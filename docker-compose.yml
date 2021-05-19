@@ -71,7 +71,7 @@ services:
       context: src/spacy-services.deb/src/spacy-services/
 
   rabbitmq:
-    image: rabbitmq
+    image: rabbitmq:3.7.8
 
 volumes:
   config_etl:
