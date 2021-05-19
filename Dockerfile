@@ -138,4 +138,10 @@ RUN a2enmod wsgi
 RUN chown www-data:www-data /etc/opensemanticsearch/ocr/dictionary.txt
 RUN chmod o+r /etc/opensemanticsearch/ocr/dictionary.txt
 
+RUN ln -s /etc/opensemanticsearch-django-webapps/apache.conf /etc/apache2/conf-enabled/opensemanticsearch-django-webapps.conf
+RUN ln -s /etc/solr-php-ui/apache.conf /etc/apache2/conf-enabled/solr-php-ui.conf
+
+RUN ln -s /etc/opensemanticsearch-django-webapps/apache.conf /etc/apache2/conf-available/opensemanticsearch-django-webapps.conf
+RUN ln -s /etc/solr-php-ui/apache.conf /etc/apache2/conf-available/solr-php-ui.conf
+
 ENTRYPOINT ["/usr/sbin/apache2ctl", "-D", "FOREGROUND"]
