@@ -54,9 +54,9 @@ services:
     volumes:
       - data_solr:/var/solr
 
-    # uncomment next two lines, if you want access the Solr API and admin UI on host IP
-    #ports:
-    #  - "8983:8983"
+    # Solr API and admin UI on host IP
+    ports:
+      - "8983:8983"
 
   tika:
     image: opensemanticsearch/tika-server
@@ -71,7 +71,21 @@ services:
       context: src/spacy-services.deb/src/spacy-services/
 
   rabbitmq:
-    image: rabbitmq:3.7.8
+    image: rabbitmq:3.7.8-management
+
+    # RabbitMQ Management UI
+    ports:
+      - "15672:15672"
+
+  flower:
+    image: mher/flower:0.9.5
+    command: ["flower", "--address=0.0.0.0", "--broker=amqp://guest:guest@rabbitmq:5672/","--port=5555"]
+
+    # Flower Dashboard
+    ports:
+      - "5555:5555"
+    depends_on:
+      - rabbitmq
 
 volumes:
   config_etl:
