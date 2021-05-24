@@ -79,7 +79,7 @@ services:
 
   flower:
     image: mher/flower:0.9.5
-    command: ["flower", "--address=0.0.0.0", "--broker=amqp://guest:guest@rabbitmq:5672/","--port=5555"]
+    command: ["flower", "--address=0.0.0.0", "--broker=amqp://guest:guest@rabbitmq:5672/", "--broker_api=http://guest:guest@rabbitmq:15672/api/vhost","--port=5555"]
 
     # Flower Dashboard
     ports:
